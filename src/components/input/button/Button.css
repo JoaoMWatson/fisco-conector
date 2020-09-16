@@ -1,0 +1,20 @@
+.primary{
+    background: rgba(12, 64, 252, 0.8)
+}
+
+.secondary{
+    background: rgba(38, 78, 115, 0.83);
+    
+}
+
+.default{
+    border:0;
+    border-radius:90;
+    width: 116;
+    height: 33;
+    font-size:17;
+    font-family:"Scada", sans-serif;
+    color:white;
+    cursor:pointer;
+    
+}

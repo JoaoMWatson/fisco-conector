@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
+
+@media only screen and (min-width: 1400px) {
+  .vertical-line {
+    border: 0.4px solid rgba(0, 0, 0, 0.5);
+    height: 13%;
+    position: absolute;
+    left: 15%;
+    top: 3%;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .partner-image {
+    margin-top: -20%;
+    margin-left: 250px;
+    position: relative;
+    width: 200px;
+    height: 150px;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .partner-image {
+    margin-top: -20%;
+    margin-left: 250px;
+    position: relative;
+    width: 200px;
+    height: 150px;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .vertical-line {
+    border: 0.4px solid rgba(0, 0, 0, 0.5);
+    height: 10rem;
+    position: absolute;
+    left: 20rem;
+    margin-left: -3px;
+    top: 2rem;
+  }
+}
+
+.content {
+  width: 100%;
+  height: 50%;
+  padding-top: 51px;
+  padding-left: 45px;
+}
+
+.logo-image {
+  width: 200px;
+  height: 37.5px;
+}
+
+.conector-title {
+  font-family: "Lato", sans-serif;
+  font-weight: lighter;
+  margin-top: 0;
+  margin-left: 4rem;
+}

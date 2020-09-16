@@ -1,0 +1,32 @@
+.search {
+  width: 252px;
+  height: 35px;
+  margin-bottom: 20px;
+  margin-top: 3px;
+  padding: 5%;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: "Scada", sans-serif;
+  border-radius: 15px;
+  border: 0;
+  background: rgba(178, 195, 240, 0.301);
+}
+
+.search:active{
+  border: 0;
+  border-radius: 90px;
+}
+
+.search:focus{
+  outline: none;
+}
+
+.label-format {
+  font-family: "Scada", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 17px;
+  line-height: 21px;
+  color: #000;
+  margin-left: 7px;
+}

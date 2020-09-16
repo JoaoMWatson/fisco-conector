@@ -1,0 +1,33 @@
+.form-content {
+  margin-top: 13%;
+  margin-left: 7%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 1px 1px;
+  grid-template-areas: "matriz filial" "data-inicial data-final" "tipo-integracao numero-doc-fiscal";
+}
+
+.matriz {
+  grid-area: matriz;
+}
+
+.filial {
+  grid-area: filial;
+}
+
+.data-inicial {
+  grid-area: data-inicial;
+}
+
+.data-final {
+  grid-area: data-final;
+}
+
+.tipo-integracao {
+  grid-area: tipo-integracao;
+}
+
+.numero-doc-fiscal {
+  grid-area: numero-doc-fiscal;
+}
