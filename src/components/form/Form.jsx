@@ -8,6 +8,7 @@ import Dropdown from "../input/dropdown/Dropdown";
 import "./Form.css";
 
 export default function Form() {
+  const [filialData, setFilialData] = useState([]);
   const [matrizData, setMatrizData] = useState();
   const [matriz, setMatriz] = useState("");
   const [filial, setFilial] = useState("");
@@ -16,6 +17,13 @@ export default function Form() {
   const [tipoIntegracao, setTipoIntegracao] = useState("");
   const [numeroFiscal, setNumeroFiscal] = useState("");
 
+  useEffect(() => {
+    async function onChangeMatriz() {
+      let resp = await axios.get(api + "Suporte/GetFilial?Matriz="+matriz);
+      setFilialData(...resp.data);
+    }
+    onChangeMatriz();
+  }, [matriz]);
 
   useEffect(() => {
     async function load() {
@@ -80,9 +88,9 @@ export default function Form() {
             onChange={(e) => setFilial(e.target.value)}
             name="filial"
             labelString="Filial"
-            options="tipoIntegracao"
+            options="filial"
+            optionsData={[filialData]}
           />
-          {console.log(matriz)}
 
           <Input
             onChange={(e) => setDataInicial(e.target.value)}

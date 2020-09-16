@@ -5,13 +5,13 @@ import "./Dropdown.css";
 
 export default function Dropdown(props) {
 
-
+  console.log(props.optionsData)
   const setOptions = () => {
     switch (props.options) {
       case "tipoIntegracao":
         return tipoIntegracao;
       case "matriz":
-        let rogerio = props.optionsData.map((value) => {
+        let optionsMatriz = props.optionsData.map((value) => {
           return [
             {
               value: value,
@@ -20,9 +20,18 @@ export default function Dropdown(props) {
             }
           ]
         });
-        return rogerio[0]
+        return optionsMatriz[0]
       case "filial":
-        return tipoIntegracao;
+        let optionsFilial = props.optionsData.map((value) => {
+          return [
+            {
+              value: value,
+              label: value,
+              disabled: "",
+            }
+          ]
+        });
+        return optionsFilial[0]
       default:
         return 0;
     }
@@ -32,7 +41,6 @@ export default function Dropdown(props) {
 
   return (
     <div style={{ width: "50%" }}>
-    {console.log(options)}
       <label className="label-format" for="cars">
         {props.labelString}
       </label>
