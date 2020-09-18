@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { ToastContainer, toast } from 'react-toastify';
 import axios from "axios";
 import api from "../../api";
 
@@ -7,9 +8,9 @@ import Button from "../input/button/Button";
 import Dropdown from "../input/dropdown/Dropdown";
 import "./Form.css";
 
-export default function Form() {
+export default function Form(props) {
   const [filialData, setFilialData] = useState([]);
-  const [matrizData, setMatrizData] = useState();
+  const [matrizData, setMatrizData] = useState([]);
   const [matriz, setMatriz] = useState("");
   const [filial, setFilial] = useState("");
   const [dataInicial, setDataInicial] = useState("");
@@ -64,9 +65,9 @@ export default function Form() {
         numeroFiscal;
 
       try {
-        axios.get(api + url);
-        const respRetorno = axios.get(api + "Suporte/GetRetornoJson");
-        alert("deu certo");
+        axios.get(api + url).then(
+          async () => props.setCallbackJson(await axios.get(api + "Suporte/GetRetornoJson"))
+        ).then(alert('Sua integração começou'))
       } catch (error) {
         console.log("Outro erro: ", error);
       }
@@ -83,14 +84,29 @@ export default function Form() {
             labelString="Matriz"
             options="matriz"
             optionsData={[matrizData]}
-          />
-          <Dropdown
-            onChange={(e) => setFilial(e.target.value)}
-            name="filial"
-            labelString="Filial"
-            options="filial"
-            optionsData={[filialData]}
-          />
+            />
+
+          <div style={{ width: "50%" }}>
+            <label className="label-format" for="cars">
+              Filial
+            </label>
+            <select
+              onChange={(e) => setFilial(e.target.value)}
+              className="searchDropdown resetDefault"
+              name="filial"
+              id="filial"
+              type="string"
+            >
+              <option value="">Escolha...</option>
+              {[filialData].map((value) => {
+                return (
+                  <option disabled="" value={value === undefined ? '':value.ESTAB}>
+                    {value === undefined ? '': value.ESTAB + " - " + value.RAZAOSOCIAL || ''}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
 
           <Input
             onChange={(e) => setDataInicial(e.target.value)}

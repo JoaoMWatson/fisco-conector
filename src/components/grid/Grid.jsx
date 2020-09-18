@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CSVLink } from "react-csv";
 import Button from "../input/button/Button";
 import axios from "axios";
@@ -7,12 +7,19 @@ import api from "../../api";
 import "./Grid.css";
 
 export default function Grid(props) {
-  const csvData = [
-    { Dados: props.Dados },
-    { Descriptionretorno: props.Descriptionretorno },
-    { Operationretorno: props.Operationretorno },
-    { Json: props.Json },
-  ];
+  let callBackJsonInstance =
+    props.callbackJson.data === undefined ? "" : props.callbackJson.data;
+
+  const [csvData, setCsvData] = useState([])
+
+  useEffect(() => {
+    async function creatCsv() {
+      setCsvData(callBackJsonInstance)
+    }
+    creatCsv();
+  }, [callBackJsonInstance]);
+
+
 
   const headers = [
     { label: "Dados", key: "Dados" },
@@ -21,17 +28,18 @@ export default function Grid(props) {
     { label: "Json", key: "Json" },
   ];
 
-  const res = () =>{
-    try{
-      axios.get(api+'Suporte/GetDeleteRetornoJson')
-      alert('retorno deletado')
-    }catch(error){
-      console.log(error)
+  const res = () => {
+    try {
+      axios.get(api + "Suporte/GetDeleteRetornoJson");
+      alert("retorno deletado");
+    } catch (error) {
+      console.log(error);
     }
-  }
+  };
 
   return (
     <>
+      {console.log(callBackJsonInstance)}
       <table class="rogerio table">
         <thead class="table-header">
           <th>ID</th>
@@ -41,28 +49,35 @@ export default function Grid(props) {
           <th>Retorno da Operação</th>
         </thead>
         <tbody className="table-body">
-          <tr>
-            <td>{props.Id}</td>
-            <td>{props.Datahoraintegracao}</td>
-            <td>{props.Dados}</td>
-            <td>{props.Descriptionretorno}</td>
-            <td>{props.Operationretorno}</td>
-          </tr>
+          {callBackJsonInstance === ""
+            ? ""
+            : callBackJsonInstance.map((value) => {
+                return (
+                  <tr>
+                    <td>{value === "" ? "" : value.Id}</td>
+                    <td>{value === "" ? "" : value.Datahoraintegracao}</td>
+                    <td>{value === "" ? "" : value.Dados}</td>
+                    <td>{value === "" ? "" : value.Descriptionretorno}</td>
+                    <td>{value === "" ? "" : value.Operationretorno}</td>
+                  </tr>
+                );
+              })}
         </tbody>
       </table>
       <div className="buttons-group">
         <CSVLink
           data={csvData}
           headers={headers}
-          filename={"relacao-erros-integracao"}
+          filename={"relacao-erros-integracao.csv"}
         >
-          <Button
-            type="button"
-            label="Exportar"
-            color="primary"
-          />
+          <Button type="button" label="Exportar" color="primary" />
         </CSVLink>
-        <Button type="button" label="Limpar" color="secondary" onClick={() => res()}/>
+        <Button
+          type="button"
+          label="Limpar"
+          color="secondary"
+          onClick={() => res()}
+        />
       </div>
     </>
   );

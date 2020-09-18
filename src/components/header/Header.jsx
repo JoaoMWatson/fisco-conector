@@ -1,8 +1,11 @@
 import React from "react";
-
+import { toast } from "react-toastify";
 import "./Header.css";
 
-export default function Header() {
+export default function Header(props) {
+
+  
+
   return (
     <div className="content">
       <img

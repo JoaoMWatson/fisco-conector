@@ -4,34 +4,22 @@ import tipoIntegracao from "./options";
 import "./Dropdown.css";
 
 export default function Dropdown(props) {
-
-  console.log(props.optionsData)
   const setOptions = () => {
     switch (props.options) {
       case "tipoIntegracao":
         return tipoIntegracao;
       case "matriz":
-        let optionsMatriz = props.optionsData.map((value) => {
-          return [
+        let optionsMatriz = Object.assign(
+          [
             {
-              value: value,
-              label: value,
+              value: props.optionsData,
+              label: props.optionsData,
               disabled: "",
-            }
-          ]
-        });
-        return optionsMatriz[0]
-      case "filial":
-        let optionsFilial = props.optionsData.map((value) => {
-          return [
-            {
-              value: value,
-              label: value,
-              disabled: "",
-            }
-          ]
-        });
-        return optionsFilial[0]
+            },
+          ],
+          props.optionsData
+        );
+        return optionsMatriz;
       default:
         return 0;
     }
@@ -51,11 +39,14 @@ export default function Dropdown(props) {
         id={props.name}
         type="string"
       >
-        <option value=''>Escolha...</option>
+        <option value="">Escolha...</option>
         {options.map((value) => {
           return (
-            <option disabled={value.disabled} value={value.value}>
-              {value.label}
+            <option
+              disabled={value.disabled || ''}
+              value={value.value || value}
+            >
+              {value.label || value}
             </option>
           );
         })}
