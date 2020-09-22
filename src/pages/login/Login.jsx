@@ -11,7 +11,7 @@ export default function Login() {
         <div class="imagem-conector">
           <img
             className="image-login"
-            src="https://raw.githubusercontent.com/JoaoMWatson/fisco-conector/5820bb22f9b59f5604a0bd8281aab5ec8c9d8a15/src/images/login-image.png"
+            src="https://raw.githubusercontent.com/JoaoMWatson/fisco-conector/99713b280abb24cccfd17935dd87d511a7f59cc1/src/images/fiscosys-banner.jpg"
           />
         </div>
         <div class="login-form">
