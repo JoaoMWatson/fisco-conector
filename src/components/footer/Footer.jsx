@@ -5,11 +5,7 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <footer className="footer">
-      <img
-        className="image"
-        src="http://fiscosys.com.br/images/LogoFiscosysOriginal.png"
-      />
-      <span>Todos os direitos reservados © 2018 | www.fiscosys.com.br</span>
+      <span>Todos os direitos reservados © 2020  | www.fiscosys.com.br</span>
     </footer>
   );
 };

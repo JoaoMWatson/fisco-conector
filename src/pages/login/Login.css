@@ -13,22 +13,21 @@
 
 .grid-login {
   display: grid;
-  grid-template-columns: 60% 50%;
+  grid-template-columns: 33% 33% 33%;
   grid-template-rows: 1fr;
   gap: 1px 1px;
-  grid-template-areas: "imagem-conector login-form";
+  grid-template-areas: "imagem-conector text-area-login login-form";
   width: 100%;
   height: 100%;
 }
 
 .imagem-conector {
   grid-area: imagem-conector;
+  background-color: #9dc6db46;
 }
-
-.image-login {
-  width: 99%;
-  height: 75%;
-  margin-top: 10px;
+.text-area-login {
+  grid-area: text-area-login;
+  background-color: red;
 }
 
 .login-form {
@@ -36,10 +35,18 @@
   border-left: 4px solid rgb(7, 13, 92);
 }
 
+.image-login {
+  width: 100%;
+  height: 80%;
+  -webkit-box-shadow: 2px 15px 35px 0px rgba(0, 0, 0, 0.14);
+  -moz-box-shadow: 2px 15px 35px 0px rgba(0, 0, 0, 0.14);
+  box-shadow: 2px 15px 35px 0px rgba(0, 0, 0, 0.14);
+}
+
 .login-title {
   font-family: "Lato", sans-serif;
   font-weight: lighter;
   color: #2f4c5a;
   margin-right: 20%;
-  font-size:40px
+  font-size: 40px;
 }

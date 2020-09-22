@@ -4,19 +4,14 @@
   bottom: 0;
   width: 100vw;
   background-color: #2e2e2e;
+  padding-top:20px
 }
 
 .footer > span {
-  margin-right: 10%;
+  margin-right: 5%;
   font-size: 1.16rem;
+  margin-top:10px;
   font-weight: 500;
   color: #FFF;
 }
 
-.image {
-  position: relative;
-  bottom: -15px;
-  left: -100px;
-  width: 200px;
-  height: 37.5px;
-}
