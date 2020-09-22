@@ -26,6 +26,12 @@ export default function Login(props) {
         <div className="text-area-login">
           <h1 className="login-title about-login">- Sobre -</h1>
           <p className="paragrafer-login">
+            A Fiscosys pode ajuda-los na Implementação de ERP`s e ferramentas
+            fiscais, na entrega das obrigações acessórias ao Fisco, atendimento
+            a Intimações e na otimização de ferramentas de apoio para facilitar
+            o dia a dia.
+          </p>
+          <p className="paragrafer-login">
             A Fiscosys é uma empresa especializada em soluções fiscais,
             fornecendo soluções inteligentes, com profissionais altamente
             qualificados, garantindo máxima qualidade na prestação de serviços
@@ -37,7 +43,6 @@ export default function Login(props) {
             ERP`s tais como, SAP, Microsoft Dynamics AX, BAAN, Oracle, entre
             outros.
           </p>
-          
         </div>
       </div>
       <Footer />
