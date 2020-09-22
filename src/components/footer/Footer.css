@@ -1,0 +1,22 @@
+.footer {
+  position: fixed;
+  height: 70px;
+  bottom: 0;
+  width: 100vw;
+  background-color: #2e2e2e;
+}
+
+.footer > span {
+  margin-right: 10%;
+  font-size: 1.16rem;
+  font-weight: 500;
+  color: #FFF;
+}
+
+.image {
+  position: relative;
+  bottom: -15px;
+  left: -100px;
+  width: 200px;
+  height: 37.5px;
+}

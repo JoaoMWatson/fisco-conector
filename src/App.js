@@ -1,29 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "./App.css";
 
 import "semantic-ui-css/semantic.min.css";
 
-import Header from "./components/header/Header";
-import Form from "./components/form/Form";
-import Grid from "./components/grid/Grid";
+import Conector from "./pages/conector/Conector";
+import Login from "./pages/login/Login";
 
 function App() {
-  const [callbackJson, setCallbackJson] = useState("");
-  const [toast, setToast] = useState("")
-  
-
   return (
-    <div className="App">
-      <div className="header">
-        <Header toast={toast}/>
-      </div>
-      <div className="form">
-        <Form setToast={setToast} setCallbackJson={setCallbackJson}/>
-      </div>
-      <div className="grid">
-        <Grid callbackJson={callbackJson}/>
-      </div>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/conector" component={Conector} />
+        <Route exact path="/" component={Login} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 

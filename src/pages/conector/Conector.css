@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Scada:wght@400;700&display=swap");
+body{
+  overflow: hidden
+}
+
+.App {
+  display: grid;
+  grid-template-columns: 0.1fr 1.9fr 2.4fr 0.1fr;
+  grid-template-rows: 15% 2.4fr 0.1fr;
+  grid-template-areas: "header header header header" "form form grid grid" "form form grid grid";
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  grid-area: header;
+  height: 50%;
+}
+
+.form {
+  grid-area: form;
+  width: 100%;
+  height: 100%;
+}
+
+.grid {
+  grid-area: grid;
+}
+
+:root {
+  --main-font-family: "Lato", sans-serif;
+  --secondary-font-family: "Scada", sans-serif;
+  --primary-color: rgba(12, 64, 252, 0.8);
+  --secundary-color: rgba(38, 78, 115, 0.83);
+  --grid-font-color: rgba(81, 130, 255, 0.85);
+}

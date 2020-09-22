@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import api from "../../api";
 
@@ -16,20 +16,31 @@ export default function Form(props) {
   const [dataInicial, setDataInicial] = useState("");
   const [dataFinal, setDataFinal] = useState("");
   const [tipoIntegracao, setTipoIntegracao] = useState("");
-  const [numeroFiscal, setNumeroFiscal] = useState("");
+  const [numeroFiscal, setNumeroFiscal] = useState();
+
+  const re = /^[0-9\b]+$/;
+  const isEmpty = "";
 
   useEffect(() => {
     async function onChangeMatriz() {
-      let resp = await axios.get(api + "Suporte/GetFilial?Matriz="+matriz);
-      setFilialData(...resp.data);
+      try {
+        let resp = await axios.get(api + "Suporte/GetFilial?Matriz=" + matriz);
+        setFilialData(...resp.data);
+      } catch (e) {
+        alert("Erro interno, favor contatar suporte");
+      }
     }
     onChangeMatriz();
   }, [matriz]);
 
   useEffect(() => {
     async function load() {
-      let resp = await axios.get(api + "Suporte/GetEmpresa");
-      setMatrizData(...resp.data);
+      try {
+        let resp = await axios.get(api + "Suporte/GetEmpresa");
+        setMatrizData(...resp.data);
+      } catch (e) {
+        alert("Erro interno, favor contatar suporte");
+      }
     }
     load();
   }, []);
@@ -65,9 +76,14 @@ export default function Form(props) {
         numeroFiscal;
 
       try {
-        axios.get(api + url).then(
-          async () => props.setCallbackJson(await axios.get(api + "Suporte/GetRetornoJson"))
-        ).then(alert('Sua integração começou'))
+        axios
+          .get(api + url)
+          .then(async () =>
+            props.setCallbackJson(
+              await axios.get(api + "Suporte/GetRetornoJson")
+            )
+          )
+          .then(alert("Sua integração começou"));
       } catch (error) {
         console.log("Outro erro: ", error);
       }
@@ -84,7 +100,7 @@ export default function Form(props) {
             labelString="Matriz"
             options="matriz"
             optionsData={[matrizData]}
-            />
+          />
 
           <div style={{ width: "50%" }}>
             <label className="label-format" for="cars">
@@ -100,8 +116,13 @@ export default function Form(props) {
               <option value="">Escolha...</option>
               {[filialData].map((value) => {
                 return (
-                  <option disabled="" value={value === undefined ? '':value.ESTAB}>
-                    {value === undefined ? '': value.ESTAB + " - " + value.RAZAOSOCIAL || ''}
+                  <option
+                    disabled=""
+                    value={value === undefined ? "" : value.ESTAB}
+                  >
+                    {value === undefined
+                      ? ""
+                      : value.ESTAB + " - " + value.RAZAOSOCIAL || ""}
                   </option>
                 );
               })}
@@ -130,7 +151,11 @@ export default function Form(props) {
           />
 
           <Input
-            onChange={(e) => setNumeroFiscal(e.target.value)}
+            onChange={(e) =>
+              e.target.value === "" || re.test(e.target.value)
+                ? ""
+                : setNumeroFiscal(e.target.value)
+            }
             nameTag="numero-doc-fiscal"
             labelString="Numero Doc Fiscal"
             type="text"

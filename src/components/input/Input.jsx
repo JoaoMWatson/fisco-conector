@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 
 import './Input.css'
 
@@ -14,6 +14,7 @@ export default function Input(props){
             type={props.type}
             name={props.nameTag}
             class="search"
+            pattern="[0-9]*"
           ></input>
         </div>
     )

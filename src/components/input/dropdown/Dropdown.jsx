@@ -39,7 +39,7 @@ export default function Dropdown(props) {
         id={props.name}
         type="string"
       >
-        <option value="">Escolha...</option>
+        <option >Escolha...</option>
         {options.map((value) => {
           return (
             <option

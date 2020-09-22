@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import GetAppIcon from "@material-ui/icons/GetApp";
+import CheckIcon from "@material-ui/icons/Check";
+import ErrorIcon from "@material-ui/icons/Error";
 import { CSVLink } from "react-csv";
 import Button from "../input/button/Button";
 import axios from "axios";
@@ -10,16 +13,32 @@ export default function Grid(props) {
   let callBackJsonInstance =
     props.callbackJson.data === undefined ? "" : props.callbackJson.data;
 
-  const [csvData, setCsvData] = useState([])
+  const [csvData, setCsvData] = useState([]);
 
   useEffect(() => {
     async function creatCsv() {
-      setCsvData(callBackJsonInstance)
+      setCsvData(callBackJsonInstance);
     }
     creatCsv();
   }, [callBackJsonInstance]);
 
-
+  function jsonDownloader(json) {
+    if (json != null) {
+      return (
+        <CSVLink data={json} filename={"retorno_json.json"}>
+          <button type="button" className="button-jsonDownload">
+            <GetAppIcon color="primary" />
+          </button>
+        </CSVLink>
+      );
+    } else {
+      return (
+        <button type="button" className="button-jsonDownload">
+          <GetAppIcon color="secondary" />
+        </button>
+      );
+    }
+  }
 
   const headers = [
     { label: "Dados", key: "Dados" },
@@ -39,14 +58,13 @@ export default function Grid(props) {
 
   return (
     <>
-      {console.log(callBackJsonInstance)}
       <table class="rogerio table">
         <thead class="table-header">
-          <th>ID</th>
+          <th>Json</th>
           <th>Data/Hora</th>
           <th>Dados</th>
           <th>Descrição</th>
-          <th>Retorno da Operação</th>
+          <th>Status</th>
         </thead>
         <tbody className="table-body">
           {callBackJsonInstance === ""
@@ -54,11 +72,19 @@ export default function Grid(props) {
             : callBackJsonInstance.map((value) => {
                 return (
                   <tr>
-                    <td>{value === "" ? "" : value.Id}</td>
+                    <td>{jsonDownloader(value.Json)}</td>
                     <td>{value === "" ? "" : value.Datahoraintegracao}</td>
                     <td>{value === "" ? "" : value.Dados}</td>
-                    <td>{value === "" ? "" : value.Descriptionretorno}</td>
-                    <td>{value === "" ? "" : value.Operationretorno}</td>
+                    <td className="description-td">
+                      {value === "" ? "" : value.Descriptionretorno}
+                    </td>
+                    <td>
+                      {value.Operationretorno === null ? (
+                        <CheckIcon style={{ color: "green[500]" }}/>
+                      ) : (
+                        <ErrorIcon color="secondary" />
+                      )}
+                    </td>
                   </tr>
                 );
               })}
