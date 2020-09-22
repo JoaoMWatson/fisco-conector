@@ -5,6 +5,32 @@
   display: flex;
   flex-direction: column;
   justify-content: start;
-  align-items: center; 
+  align-items: center;
   height: 100vh;
+}
+
+.grid-login {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 1fr;
+  gap: 1px 1px;
+  grid-template-areas: "imagem-conector login-form";
+  width: 100%;
+  height: 100%;
+}
+
+.imagem-conector {
+  grid-area: imagem-conector;
+  background-color: red;
+}
+
+.image-login{
+  width: 100%;
+  height: 100%;
+}
+
+.login-form {
+  grid-area: login-form;
+  background-color: blue;
+
 }
